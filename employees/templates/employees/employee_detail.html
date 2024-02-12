@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .document-link {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .document-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
+        <p>Email: {{ employee.email }}</p>
+        {% if employee.identification_document %}
+            <p>Identification Document: <a class="document-link" href="{{ employee.identification_document.url }}" target="_blank">View Document</a></p>
+        {% endif %}
+        <h2>Tasks Assigned to {{ employee.first_name }}</h2>
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task.task_name }} - {{ task.status }}</li>
+            {% empty %}
+                <li>No tasks assigned yet.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'employee_list' %}">Back to Employee List</a>
+    </div>
+</body>
+</html>

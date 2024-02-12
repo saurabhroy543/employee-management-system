@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, textarea:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Task</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.task_name.label_tag }}
+                {{ form.task_name }}
+                <span class="error">{{ form.task_name.errors }}</span>
+            </div>
+            <div class="form-group">
+                {{ form.task_description.label_tag }}
+                {{ form.task_description }}
+                <span class="error">{{ form.task_description.errors }}</span>
+            </div>
+            <div class="form-group">
+                {{ form.ticket_number.label_tag }}
+                {{ form.ticket_number }}
+                <span class="error">{{ form.ticket_number.errors }}</span>
+            </div>
+            <div class="form-group">
+                {{ form.status.label_tag }}
+                {{ form.status }}
+                <span class="error">{{ form.status.errors }}</span>
+            </div>
+            <div class="form-group">
+                {{ form.reporter.label_tag }}
+                {{ form.reporter }}
+                <span class="error">{{ form.reporter.errors }}</span>
+            </div>
+            <div class="form-group">
+                {{ form.type.label_tag }}
+                {{ form.type }}
+                <span class="error">{{ form.type.errors }}</span>
+            </div>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+</body>
+</html>
